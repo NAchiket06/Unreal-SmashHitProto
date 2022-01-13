@@ -15,7 +15,6 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -23,6 +22,9 @@ void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	AddMovementInput(FVector(1,0,0) * MovementSpeed * DeltaTime);
+
+	
 }
 
 // Called to bind functionality to input
@@ -30,5 +32,18 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAxis(TEXT("LookRight"),this,&APlayerCharacter::LookRightRotation);
+	PlayerInputComponent->BindAxis(TEXT("LookUp"),this,&APlayerCharacter::LookUpRotation);
+
+}
+
+void APlayerCharacter::LookRightRotation(float value)
+{
+	AddControllerYawInput(value);
+}
+
+void APlayerCharacter::LookUpRotation(float value)
+{
+	AddControllerPitchInput(-value);
 }
 

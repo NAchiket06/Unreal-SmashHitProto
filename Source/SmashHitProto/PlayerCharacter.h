@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
@@ -29,5 +30,12 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	float MovementSpeed = 100.f;
+
+	UPROPERTY(EditAnywhere)
+	float RotationSpeed = 10.f;
+
+	
+	void LookRightRotation(float value);
+	void LookUpRotation(float value);
 
 };
