@@ -7,22 +7,22 @@
 #include "Bullet.generated.h"
 
 UCLASS()
-class SMASHHIT_API ABullet : public AActor
+class SMASHHITPROTO_API ABullet : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
 	ABullet();
-	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* Root;
 	
@@ -34,9 +34,11 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	FVector HitForce = FVector(50,50,50);
+
 	
 	UFUNCTION()
 	void OnBulletHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit );
 
 	void CheckIfGlassHit(AActor* OtherActor);
+	
 };

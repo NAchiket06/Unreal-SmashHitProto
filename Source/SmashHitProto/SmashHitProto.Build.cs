@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class SmashHit : ModuleRules
+public class SmashHitProto : ModuleRules
 {
-	public SmashHit(ReadOnlyTargetRules Target) : base(Target)
+	public SmashHitProto(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	

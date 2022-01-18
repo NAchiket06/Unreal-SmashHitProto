@@ -1,5 +1,5 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 
-#include "SmashHitGameModeBase.h"
+#include "SmashHitProtoGameModeBase.h"
 
