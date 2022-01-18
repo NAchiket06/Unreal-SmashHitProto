@@ -23,4 +23,22 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* Root;
+	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* Mesh;
+		
+	UPROPERTY(EditAnywhere)
+	float InitialForce = 1000.f;
+
+	UPROPERTY(EditAnywhere)
+	FVector HitForce = FVector(50,50,50);
+
+	
+	UFUNCTION()
+	void OnBulletHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit );
+
+	void CheckIfGlassHit(AActor* OtherActor);
+	
 };

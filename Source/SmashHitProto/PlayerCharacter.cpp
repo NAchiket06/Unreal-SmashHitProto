@@ -3,12 +3,17 @@
 
 #include "PlayerCharacter.h"
 
+#include "Tasks/GameplayTask_SpawnActor.h"
+
 // Sets default values
 APlayerCharacter::APlayerCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	BulletSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Bullet Spawn Point"));
+	BulletSpawnPoint->SetupAttachment(RootComponent);
+	
 }
 
 // Called when the game starts or when spawned
@@ -35,6 +40,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("LookRight"),this,&APlayerCharacter::LookRightRotation);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"),this,&APlayerCharacter::LookUpRotation);
 
+	PlayerInputComponent->BindAction(TEXT("Fire"),EInputEvent::IE_Pressed,this,&APlayerCharacter::FireBullet);
+
 }
 
 void APlayerCharacter::LookRightRotation(float value)
@@ -46,4 +53,16 @@ void APlayerCharacter::LookUpRotation(float value)
 {
 	AddControllerPitchInput(-value);
 }
+
+void APlayerCharacter::FireBullet()
+{
+	if(BulletCount == 0)
+	{
+		return;
+	}
+	FActorSpawnParameters SpawnParams;
+	GetWorld()->SpawnActor<AActor>(Bullet,BulletSpawnPoint->GetComponentLocation(),GetControlRotation(),SpawnParams);
+	BulletCount--;
+}
+
 

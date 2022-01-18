@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Bullet.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "PlayerCharacter.generated.h"
@@ -13,29 +14,63 @@ class SMASHHITPROTO_API APlayerCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	APlayerCharacter();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+public:
+	
+	#pragma region Virtual Funtions
+	
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
+	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
-	UPROPERTY(EditAnywhere)
-	float MovementSpeed = 100.f;
+	#pragma endregion
 
-	UPROPERTY(EditAnywhere)
+	#pragma region FUNCTIONS
+
+	/**
+	 * @brief Sets the Sideways/Yaw rotation of the player
+	 * @param value Amount by which player rotates. This is set by the axis vakue from inputComponent
+	 */
+	void LookRightRotation(float value);
+	
+	/**
+	 * @brief Sets the Pitch rotation of the player
+	 * @param value Amount by which player rotates. This is set by the axis vakue from inputComponent
+	 */
+	void LookUpRotation(float value);
+	
+	/**
+	 * @brief CHECKS THE CONDITIONS FOR BULLET TO BE FIRED. IF TRUE, FIRES THE BULLET 
+	 */
+	void FireBullet();
+	
+	#pragma endregion 
+
+	#pragma region MOVEMENT
+	UPROPERTY(EditAnywhere,Category="Movement")
+	float MovementSpeed = 100.f;
+	
+	UPROPERTY(EditAnywhere,Category="Movement")
 	float RotationSpeed = 10.f;
 
+	#pragma endregion
+
+	#pragma region BulletProperties
 	
-	void LookRightRotation(float value);
-	void LookUpRotation(float value);
+	UPROPERTY(EditAnywhere,Category="Bullet")
+	int BulletCount= 100;
+	
+	UPROPERTY(EditAnywhere,Category="Bullet")
+	TSubclassOf<AActor> Bullet;
+
+	UPROPERTY(EditAnywhere)
+	USceneComponent* BulletSpawnPoint;
+
+	#pragma endregion 
+	
 
 };
