@@ -3,12 +3,12 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class SmashHitProtoTarget : TargetRules
+public class SmashHitTarget : TargetRules
 {
-	public SmashHitProtoTarget( TargetInfo Target) : base(Target)
+	public SmashHitTarget( TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "SmashHitProto" } );
+		ExtraModuleNames.AddRange( new string[] { "SmashHit" } );
 	}
 }

@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "SmashHitProtoGameModeBase.generated.h"
+#include "SmashHitGameModeBase.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SMASHHITPROTO_API ASmashHitProtoGameModeBase : public AGameModeBase
+class SMASHHIT_API ASmashHitGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	

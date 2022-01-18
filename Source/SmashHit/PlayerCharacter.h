@@ -3,26 +3,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Bullet.h"
 #include "GameFramework/Character.h"
-#include "GameFramework/SpringArmComponent.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
-class SMASHHITPROTO_API APlayerCharacter : public ACharacter
+class SMASHHIT_API APlayerCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
+	// Sets default values for this character's properties
 	APlayerCharacter();
 
 protected:
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:
-	
+public:	
+
 	#pragma region Virtual Funtions
-	
+    	
 	virtual void Tick(float DeltaTime) override;
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -67,7 +67,7 @@ public:
 	UPROPERTY(EditAnywhere,Category="Bullet")
 	TSubclassOf<AActor> Bullet;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	USceneComponent* BulletSpawnPoint;
 
 	#pragma endregion 
